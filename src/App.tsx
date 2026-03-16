@@ -186,7 +186,7 @@ export default function App() {
 
   return (
     <div className="flex h-screen w-full bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-gray-200 overflow-hidden font-sans selection:bg-emerald-500/30">
-      <h1>Testing two </h1>
+      <h1>Testing  is the best </h1>
       {/* Sidebar Area */}
       <div className="w-full md:w-[350px] lg:w-[400px] flex-shrink-0 flex flex-col border-r border-white/5 bg-white/5 backdrop-blur-md relative z-10 transition-all">
 
