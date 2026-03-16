@@ -28,7 +28,7 @@ export default function App() {
   // Track joined groups (groupId -> userName)
   const [joinedGroups, setJoinedGroups] = useState<Record<string, string>>({});
   const [joinName, setJoinName] = useState('');
-  
+
   // Status tracking (room -> status string)
   const [statusMap, setStatusMap] = useState<Record<string, string>>({});
   const typingTimeoutRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
@@ -48,7 +48,7 @@ export default function App() {
   useEffect(() => {
     scrollToBottom();
   }, [messages, activeGroup, joinedGroups]);
-  
+
   useEffect(() => {
     socket.connect();
 
@@ -108,14 +108,14 @@ export default function App() {
       if (userName === joinedGroupsRef.current[room]) return;
 
       setStatusMap(prev => ({ ...prev, [room]: name }));
-      
+
       if (typingTimeoutRef.current[room]) clearTimeout(typingTimeoutRef.current[room]);
       typingTimeoutRef.current[room] = setTimeout(() => {
         setStatusMap(prev => {
           if (prev[room] === name) {
-             const next = { ...prev };
-             delete next[room];
-             return next;
+            const next = { ...prev };
+            delete next[room];
+            return next;
           }
           return prev;
         });
@@ -125,13 +125,13 @@ export default function App() {
     socket.on("user_online", (data) => {
       const { name, room } = data;
       setStatusMap(prev => ({ ...prev, [room]: name }));
-      
+
       setTimeout(() => {
         setStatusMap(prev => {
           if (prev[room] === name) {
-             const next = { ...prev };
-             delete next[room];
-             return next;
+            const next = { ...prev };
+            delete next[room];
+            return next;
           }
           return prev;
         });
@@ -186,7 +186,7 @@ export default function App() {
 
   return (
     <div className="flex h-screen w-full bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] text-gray-200 overflow-hidden font-sans selection:bg-emerald-500/30">
-
+      <h1>Testing two </h1>
       {/* Sidebar Area */}
       <div className="w-full md:w-[350px] lg:w-[400px] flex-shrink-0 flex flex-col border-r border-white/5 bg-white/5 backdrop-blur-md relative z-10 transition-all">
 
@@ -336,9 +336,9 @@ export default function App() {
                     onChange={(e) => {
                       setInputMessage(e.target.value);
                       if (joinedGroups[activeGroup.name]) {
-                        socket.emit("user_typing", { 
-                          name: joinedGroups[activeGroup.name], 
-                          room: activeGroup.name 
+                        socket.emit("user_typing", {
+                          name: joinedGroups[activeGroup.name],
+                          room: activeGroup.name
                         });
                       }
                     }}
